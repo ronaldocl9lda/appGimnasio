@@ -23,6 +23,8 @@ import { ListaServicios } from './components/Servicios/ListaServicios'
 import TablaEjercicios from './components/Rutina/TablaEjercicios'
 import TablaPlanes from './components/Planes/TablaPlanes'
 import TablaActividades from './components/Actividades/TablaActividades'
+import { FormPlanes } from './components/Planes/FormPlanes'
+import { FormEjercicios } from './components/Rutina/FormEjercicios'
 //import { FormServicios } from './components/Servicios/FormServicios'
 
 const router=createBrowserRouter([
@@ -45,11 +47,11 @@ const router=createBrowserRouter([
   },
   {
     path: 'ejercicios/create/',
-    element: <EjerciciosForm/>
+    element: <FormEjercicios/>
   },
   {
     path: 'ejercicios/update/:idEjercicio',
-    element: <FormMovie/>
+    element: <FormEjercicios/>
   },
   //Planes
   {
@@ -66,7 +68,7 @@ const router=createBrowserRouter([
   },
   {
     path: 'planes/create/',
-    element: <FormMovie/>
+    element: <FormPlanes/>
   },
   //Rutinas
   {

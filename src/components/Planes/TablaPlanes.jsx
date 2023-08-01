@@ -24,7 +24,6 @@ import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
 import EditIcon from '@mui/icons-material/Edit'
 import { useNavigate, Link } from 'react-router-dom'
-import ServiciosService from '../../services/ServiciosService'
 import PlanesService from '../../services/PlanesService'
 
 function descendingComparator (a, b, orderBy) {
@@ -104,7 +103,7 @@ function TablePlanesHead (props) {
       <TableRow>
         <TableCell padding='checkbox'>
           <Tooltip title='Nuevo'>
-            <IconButton component={Link} to='/rutinas/create'>
+            <IconButton component={Link} to='/planes/create'>
               <AddIcon />
             </IconButton>
           </Tooltip>
@@ -152,7 +151,7 @@ function TableServiciosToolbar (props) {
   const { numSelected } = props
   const { idSelected } = props
   const update = () => {
-    return navigate(`/rutinas/update/${idSelected}`)
+    return navigate(`/planes/update/${idSelected}`)
   }
   return (
     <Toolbar
