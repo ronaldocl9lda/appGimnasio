@@ -25,6 +25,7 @@ import { visuallyHidden } from '@mui/utils'
 import EditIcon from '@mui/icons-material/Edit'
 import { useNavigate, Link } from 'react-router-dom'
 import EjerciciosService from '../../services/EjerciciosService'
+import ActividadesGrupalesService from '../../services/ActividadesGrupalesService'
 
 function descendingComparator (a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -65,17 +66,36 @@ const headCells = [
     disablePadding: true,
     label: 'idActividad'
   },
-  {
-    id: 'idUsuario',
-    numeric: true,
-    disablePadding: false,
-    label: 'idUsuario'
-  },
+    
   {
     id: 'idServicio',
     numeric: true,
     disablePadding: false,
     label: 'idServicio'
+  },
+  {
+    id: 'fecha',
+    numeric: false,
+    disablePadding: false,
+    label: 'fecha'
+  },
+  {
+    id: 'horaInicio',
+    numeric: false,
+    disablePadding: false,
+    label: 'horaInicio'
+  },
+  {
+    id: 'horaFin',
+    numeric: false,
+    disablePadding: false,
+    label: 'horaFin'
+  },
+  {
+    id: 'cupo',
+    numeric: false,
+    disablePadding: false,
+    label: 'cupo'
   }
 ]
 //Construcción del Header de la tabla con sus propiedades
@@ -97,7 +117,7 @@ function TablaActividadesHead (props) {
       <TableRow>
         <TableCell padding='checkbox'>
           <Tooltip title='Nuevo'>
-            <IconButton component={Link} to='/ejercicios/create'>
+            <IconButton component={Link} to='/actividadesGrupales/create'>
               <AddIcon />
             </IconButton>
           </Tooltip>
@@ -145,7 +165,7 @@ function TablaActividadesToolbar (props) {
   const { numSelected } = props
   const { idSelected } = props
   const update = () => {
-    return navigate(`/ejercicios/update/${idSelected}`)
+    return navigate(`/actividadesGrupales/update/${idSelected}`)
   }
   return (
     <Toolbar
@@ -179,7 +199,7 @@ function TablaActividadesToolbar (props) {
             id='tableTitle'
             component='div'
           >
-            Ejercicios
+            Actividades Grupales
           </Typography>
           )}
 
@@ -219,7 +239,7 @@ export default function TablaActividades () {
   const [error, setError] =useState('');
   const [loaded, setLoaded] =useState(false);
   useEffect(()=>{
-    EjerciciosService.obtenerEjercicios()
+    ActividadesGrupalesService.obtenerActividad()
     .then( response=>{
         console.log(response)
         setData(response.data.results)
@@ -311,17 +331,17 @@ export default function TablaActividades () {
                   {stableSort(data, getComparator(order, orderBy))
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row, index) => {
-                      const isItemSelected = isSelected(row.id)
+                      const isItemSelected = isSelected(row.idActividad)
                       const labelId = `enhanced-table-checkbox-${index}`
 
                       return (
                         <TableRow
                           hover
-                          onClick={(event) => handleClick(event, row.id)}
+                          onClick={(event) => handleClick(event, row.idActividad)}
                           role='checkbox'
                           aria-checked={isItemSelected}
                           tabIndex={-1}
-                          key={row.id}
+                          key={row.idActividad}
                           selected={isItemSelected}
                         >
                           <TableCell padding='checkbox'>
@@ -339,10 +359,13 @@ export default function TablaActividades () {
                             scope='row'
                             padding='none'
                           >
-                            {row.title}
+                            {row.idActividad}
                           </TableCell>
-                          <TableCell align='left'>{row.year}</TableCell>
-                          <TableCell align='left'>{row.time}</TableCell>
+                          <TableCell align='left'>{row.idServicio}</TableCell>
+                          <TableCell align='left'>{row.fecha}</TableCell>
+                          <TableCell align='left'>{row.horaInicio}</TableCell>
+                          <TableCell align='left'>{row.horaFin}</TableCell>
+                          <TableCell align='left'>{row.cupo}</TableCell>
                         </TableRow>
                       )
                     })}

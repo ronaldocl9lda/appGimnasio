@@ -2,7 +2,6 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import './App.css'
 import { Layout } from './components/Layout/Layout'
 import { Home } from './components/Home/Home'
-import { ListMovies } from './components/Movie/ListMovies'
 import { DetailMovie } from './components/Movie/DetailMovie'
 import TableMovies from './components/Movie/TableMovies'
 import TablaServicios from './components/Servicios/TablaServicios'
@@ -23,6 +22,7 @@ import { EjerciciosForm } from './components/Rutina/EjerciciosForm'
 import { ListaServicios } from './components/Servicios/ListaServicios'
 import TablaEjercicios from './components/Rutina/TablaEjercicios'
 import TablaPlanes from './components/Planes/TablaPlanes'
+import TablaActividades from './components/Actividades/TablaActividades'
 //import { FormServicios } from './components/Servicios/FormServicios'
 
 const router=createBrowserRouter([
@@ -30,11 +30,7 @@ const router=createBrowserRouter([
     path:'/',
     element: <Home />
   },
-  {
-    path:'/movie/',
-    element: <ListMovies />
-  },
-  //Ejercicios
+//Ejercicios
   {
     path:'/ejercicios/',
     element: <ListaEjercicios />
@@ -104,7 +100,7 @@ const router=createBrowserRouter([
   },
   {
     path:'/actividadesGrupales-table',
-    element: <TableMovies />
+    element: <TablaActividades />
   },
   {
     path: 'actividadesGrupales/create/',
@@ -147,6 +143,15 @@ const router=createBrowserRouter([
     path: 'servicios/update/:idServicio',
     element: <FormServicios/>
   },*/
+  // Fotos
+  /*{
+    path:'/fotos/',
+    element: <ListaFotos />
+  },
+  {
+    path:'/fotos/:idFoto',
+    element: <DetailServicios />
+  }*/
 ])
 
 function App() {
