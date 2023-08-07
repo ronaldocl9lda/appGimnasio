@@ -17,19 +17,19 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import PlanesService from '../../services/PlanesService';
 import ServiciosService from '../../services/ServiciosService';
-import { ServiciosForm } from './ServiciosForm';
+import { ServiciosForm } from '../Planes/ServiciosForm';
 
-export function FormPlanes() {
+export function FormServicios() {
   const navigate = useNavigate()
   const routeParams = useParams();
   // Id de la pelicula a actualizar
-  const id = routeParams.idPlan || null;
+  const id = routeParams.idServicio || null;
   const esCrear = !id;
   // Valores a precarga al actualizar
   const [values, setValues] = useState(null);
   // Esquema de validación
   const planesSchema = yup.object({
-    nombre: yup
+    nombreServicio: yup
       .string()
       .required('El título es requerido')
       .min(3, 'El título debe tener 3 caracteres'),
@@ -37,8 +37,8 @@ export function FormPlanes() {
       .string()
       .required('El título es requerido')
       .min(6, 'El título debe tener 3 caracteres'),
-    precio: yup.string().required('Los minutos son requerido'),
-    servicios: yup.array().typeError('Seleccione un servicio'),
+    foto: yup.string().required('Los minutos son requerido'),
+    planes: yup.array().typeError('Seleccione un plan'),
   });
   const {
     control,
@@ -48,13 +48,13 @@ export function FormPlanes() {
   } = useForm({
     // Valores iniciales
     defaultValues: {
-      idPlan: '',
-      nombrePlan: '',
+      idServicio: '',
+      nombreServicio: '',
       descripcion: '',
-      precio: '',
-      servicios: [
+      foto: '',
+      planes: [
         {
-          idServicio: ''
+          idPlan: ''
         },
       ],
     },
@@ -68,19 +68,19 @@ export function FormPlanes() {
   // de las llaves primaras
   const { fields, append, remove } = useFieldArray({
     control, //controls proviene de useForm
-    name: 'servicios', //nombre único para el campo Array
+    name: 'planes', //nombre único para el campo Array
   });
   // Eliminar servicio ser de listado
-  const removerServicio = (index) => {
+  const removerPlan = (index) => {
     if (fields.length === 1) {
       return;
     }
     remove(index);
   };
   // Agregar un nuevo servicio
-  const agregarNuevoServicio = () => {
+  const agregarNuevoPlan = () => {
     append({
-        idServicio: ''
+        idPlan: ''
     });
   };
   // Valores de formulario que llena el usuario
@@ -119,7 +119,7 @@ export function FormPlanes() {
     if(start){
       if(esCrear){
         //Crear pelicula
-        PlanesService.crearPlan(formData)
+        ServiciosService.crearServicio(formData)
         .then(response => {
           console.log(response)
             setResponseData(response.data.results)
@@ -133,7 +133,7 @@ export function FormPlanes() {
         });
       }else{
         //Modificar pelicula
-        PlanesService.obtenerPlanes(formData)
+        ServiciosService.obtenerServicios(formData)
         .then(response => {
           console.log(response)
             setResponseData(response.data.results)
@@ -155,7 +155,7 @@ export function FormPlanes() {
   //Obtener Pelicula
   useEffect(() => {
     if(id!=undefined && !isNaN(Number(id))){
-      PlanesService.obtenerPlanFormPorId(id)
+      ServiciosService.obtenerServicioFormPorId(id)
     .then(response => {
       console.log(response)
         setData(response.data.results)
@@ -174,7 +174,7 @@ export function FormPlanes() {
   const [dataPlanes, setDataPlanes] = useState({});
   const [loadedPlanes, setLoadedPlanes] = useState(false);
   useEffect(() => {
-    ServiciosService.obtenerServicios()
+    PlanesService.obtenerPlanes()
       .then((response) => {
         console.log(response);
         setDataPlanes(response.data.results);
@@ -212,21 +212,21 @@ export function FormPlanes() {
         <Grid container spacing={1}>
           <Grid item xs={12} sm={12}>
             <Typography variant='h5' gutterBottom>
-              {esCrear ? 'Crear' : 'Modificar'} Plan
+              {esCrear ? 'Crear' : 'Modificar'} Servicio
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4}>
             <FormControl variant='standard' fullWidth sx={{ m: 1 }}>
               <Controller
-                name='nombre'
+                name='nombreServicio'
                 control={control}
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    id='nombre'
-                    label='Nombre'
+                    id='nombreServicio'
+                    label='nombreServicio'
                     error={Boolean(errors.nombre)}
-                    helperText={errors.year ? errors.year.message : ' '}
+                    helperText={errors.nombreServicio ? errors.nombreServicio.message : ' '}
                   />
                 )}
               />
@@ -244,7 +244,7 @@ export function FormPlanes() {
                     id='descripcion'
                     label='Descripcion'
                     error={Boolean(errors.descripcion)}
-                    helperText={errors.time ? errors.time.message : ' '}
+                    helperText={errors.descripcion ? errors.descripcion.message : ' '}
                   />
                 )}
               />
@@ -254,15 +254,15 @@ export function FormPlanes() {
             {/* ['filled','outlined','standard']. */}
             <FormControl variant='standard' fullWidth sx={{ m: 1 }}>
               <Controller
-                name='precio'
+                name='foto'
                 control={control}
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    id='precio'
-                    label='Precio'
-                    error={Boolean(errors.precio)}
-                    helperText={errors.time ? errors.time.message : ' '}
+                    id='foto'
+                    label='foto'
+                    error={Boolean(errors.foto)}
+                    helperText={errors.foto ? errors.foto.message : ' '}
                   />
                 )}
               />
@@ -276,10 +276,10 @@ export function FormPlanes() {
           <Grid item xs={12} sm={6}>
             <FormControl variant='standard' fullWidth sx={{ m: 1 }}>
               <Typography variant='h6' gutterBottom>
-                Servicios
+                Planes
                 <Tooltip title='Agregar Actor'>
                   <span>
-                    <IconButton color='secondary' onClick={agregarNuevoServicio}>
+                    <IconButton color='secondary' onClick={agregarNuevoPlan}>
                       <AddIcon />
                     </IconButton>
                   </span>
@@ -294,9 +294,9 @@ export function FormPlanes() {
                     data={dataPlanes}
                     key={index}
                     index={index}
-                    onRemove={removerServicio}
+                    onRemove={removerPlan}
                     control={control}
-                    onChange={(e) => setValue('servicios', e.target.value, { shouldValidate: true })}
+                    onChange={(e) => setValue('planes', e.target.value, { shouldValidate: true })}
                     disableRemoveButton={fields.length === 1}
                   />
                 ))}

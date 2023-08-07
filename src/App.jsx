@@ -25,6 +25,7 @@ import TablaPlanes from './components/Planes/TablaPlanes'
 import TablaActividades from './components/Actividades/TablaActividades'
 import { FormPlanes } from './components/Planes/FormPlanes'
 import { FormEjercicios } from './components/Rutina/FormEjercicios'
+import { FormServicios } from './components/Servicios/FormServicios'
 //import { FormServicios } from './components/Servicios/FormServicios'
 
 const router=createBrowserRouter([
@@ -68,6 +69,10 @@ const router=createBrowserRouter([
   },
   {
     path: 'planes/create/',
+    element: <FormPlanes/>
+  },
+  {
+    path: 'planes/update/:idPlan',
     element: <FormPlanes/>
   },
   //Rutinas
@@ -136,6 +141,14 @@ const router=createBrowserRouter([
   {
     path:'/servicios-table',
     element: <TablaServicios />
+  },
+  {
+    path:'/servicios/create',
+    element: <FormServicios />
+  },
+  {
+    path:'/servicios/update:idServicio',
+    element: <FormServicios />
   },/*
   {
     path: 'servicios/create/',

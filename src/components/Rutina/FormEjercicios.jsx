@@ -16,6 +16,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import EjerciciosService from '../../services/EjerciciosService';
+import RutinaService from '../../services/RutinaService';
 import { RutinasForm } from './RutinasForm';
 
 export function FormEjercicios() {
@@ -172,7 +173,7 @@ export function FormEjercicios() {
   const [dataRutinas, setDataRutinas] = useState({});
   const [loadedRutinas, setLoadedRutinas] = useState(false);
   useEffect(() => {
-    EjerciciosService.obtenerEjercicios()
+    RutinaService.obtenerRutinas()
       .then((response) => {
         console.log(response);
         setDataRutinas(response.data.results);
@@ -210,7 +211,7 @@ export function FormEjercicios() {
         <Grid container spacing={1}>
           <Grid item xs={12} sm={12}>
             <Typography variant='h5' gutterBottom>
-              {esCrear ? 'Crear' : 'Modificar'} Rutina
+              {esCrear ? 'Crear' : 'Modificar'} Ejercicio
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -272,7 +273,7 @@ export function FormEjercicios() {
           <Grid item xs={12} sm={6}>
             <FormControl variant='standard' fullWidth sx={{ m: 1 }}>
               <Typography variant='h6' gutterBottom>
-                Ejercicios
+                Rutinas
                 <Tooltip title='Agregar Rutina'>
                   <span>
                     <IconButton color='secondary' onClick={agregarNuevaRutina}>

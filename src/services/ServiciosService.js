@@ -1,7 +1,7 @@
 import axios from 'axios';
 const BASE_URL=import.meta.env.VITE_BASE_URL+"servicios"
 
-class ServiciosServicios{
+class ServiciosService{
     //Definición para Llamar al API y obtener el listado de peliculas
     //localhost:81/api/movie
     obtenerServicios(){
@@ -24,4 +24,4 @@ class ServiciosServicios{
     }
 }
 
-export default new ServiciosServicios()
+export default new ServiciosService()

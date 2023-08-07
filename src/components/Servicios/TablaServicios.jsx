@@ -103,7 +103,7 @@ function TableServiciosHead (props) {
       <TableRow>
         <TableCell padding='checkbox'>
           <Tooltip title='Nuevo'>
-            <IconButton component={Link} to='/rutinas/create'>
+            <IconButton component={Link} to='/servicios/create'>
               <AddIcon />
             </IconButton>
           </Tooltip>
@@ -185,7 +185,7 @@ function TableServiciosToolbar (props) {
             id='tableTitle'
             component='div'
           >
-            Peliculas
+            Servicios
           </Typography>
           )}
 

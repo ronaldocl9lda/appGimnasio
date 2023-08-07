@@ -185,7 +185,7 @@ function TableServiciosToolbar (props) {
             id='tableTitle'
             component='div'
           >
-            Peliculas
+            Planes
           </Typography>
           )}
 

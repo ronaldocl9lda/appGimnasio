@@ -49,10 +49,10 @@ export function DetailEjercicios () {
               {data.nombreEjercicio}
             </Typography>
             <Typography component='span' variant='body1'>
-              <Box fontWeight='bold' display='inline'>Tiempo:</Box> {data.descripcion}  minutos
+              <Box fontWeight='bold' display='inline'>Descripcion:</Box> {data.descripcion}  minutos
             </Typography>
             <Typography component='span' variant='body1'>
-              <Box fontWeight='bold' display='inline'>Idioma:</Box> {data.equipamento}  
+              <Box fontWeight='bold' display='inline'>Esquipamento:</Box> {data.equipamento}  
             </Typography>
             {/*<Typography component='span' variant='body1'>
               <Box fontWeight='bold'>Generos:</Box>
