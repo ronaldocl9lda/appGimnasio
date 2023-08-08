@@ -14,11 +14,10 @@ import {ListaActividades} from './components/Actividades/ListaActividades'
 import { ListaPlanes } from './components/Planes/ListaPlanes'
 import { DetailPlan } from './components/Planes/DetailPlan'
 import { DetailRutina } from './components/Rutina/DetailRutina'
-import { DetailActividadesGrupales } from './components/Rutina/DetailActividadesGrupales'
+import { DetailActividadesGrupales } from './components/Actividades/DetailActividadesGrupales';
 import { DetailServicios } from './components/Servicios/DetailServicios'
 import TablaRutinas from './components/Rutina/TablaRutinas'
 import { FormRutina } from './components/Rutina/FormRutina'
-import { EjerciciosForm } from './components/Rutina/EjerciciosForm'
 import { ListaServicios } from './components/Servicios/ListaServicios'
 import TablaEjercicios from './components/Rutina/TablaEjercicios'
 import TablaPlanes from './components/Planes/TablaPlanes'
@@ -26,6 +25,7 @@ import TablaActividades from './components/Actividades/TablaActividades'
 import { FormPlanes } from './components/Planes/FormPlanes'
 import { FormEjercicios } from './components/Rutina/FormEjercicios'
 import { FormServicios } from './components/Servicios/FormServicios'
+import { FormActividades } from './components/Actividades/FormActividades'
 //import { FormServicios } from './components/Servicios/FormServicios'
 
 const router=createBrowserRouter([
@@ -111,8 +111,13 @@ const router=createBrowserRouter([
   },
   {
     path: 'actividadesGrupales/create/',
-    element: <FormMovie/>
+    element: <FormActividades/>
   },
+  {
+    path: 'actividadesGrupales/update/:idActividad',
+    element: <FormActividades/>
+  },
+  //Peliculas
   {
     path:'/movie-table',
     element: <TableMovies />

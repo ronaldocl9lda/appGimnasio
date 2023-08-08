@@ -10,10 +10,9 @@ import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import Tooltip from '@mui/material/Tooltip';
 import { Controller } from 'react-hook-form';
 import PropTypes from 'prop-types';
-import { SelectServicios } from './SelectServicios';
-import { SelectPlanes } from '../Servicios/SelectPlanes';
+import { SelectDetalles } from './SelectDetalles';
 
-ServiciosForm.propTypes = {
+DetallesForm.propTypes = {
   data: PropTypes.array,
   control: PropTypes.object,
   index: PropTypes.number,
@@ -22,7 +21,7 @@ ServiciosForm.propTypes = {
   field: PropTypes.object,
 };
 
-export function ServiciosForm({
+export function DetallesForm({
   data,
   control,
   index,
@@ -37,24 +36,31 @@ export function ServiciosForm({
         <List>
           <ListItem>
             <ListItemIcon>
-              <Tooltip title={`Servicio ${index + 1}`}>
+              <Tooltip title={`Detalle ${index + 1}`}>
                 <IconButton>
                   <DirectionsRunIcon />
                 </IconButton>
               </Tooltip>
             </ListItemIcon>
-            <ListItemText>
+
+            <ListItemText sx={{ m: 1 }}>
               <Controller
                 key={index}
-                name={`servicios[${index}].idServicio`}
+                name={`detalles[${index}].idActividad`}
                 control={control}
-                render={({ field }) => (
-                  <SelectPlanes field={field} data={data} />
-                )}
+                render={({ field }) => <TextField {...field} label='idActividad' />}
+              />
+            </ListItemText>
+            <ListItemText sx={{ m: 1 }}>
+              <Controller
+                key={index}
+                name={`detalles[${index}].idCliente`}
+                control={control}
+                render={({ field }) => <TextField {...field} label='idCliente' />}
               />
             </ListItemText>
             <ListItemIcon>
-              <Tooltip title={`Eliminar Plan ${index + 1}`}>
+              <Tooltip title={`Eliminar Detalle ${index + 1}`}>
                 <span>
                   <IconButton
                     key={index}
