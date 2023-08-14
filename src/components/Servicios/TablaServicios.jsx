@@ -151,7 +151,7 @@ function TableServiciosToolbar (props) {
   const { numSelected } = props
   const { idSelected } = props
   const update = () => {
-    return navigate(`/rutinas/update/${idSelected}`)
+    return navigate(`/servicios/update/${idSelected}`)
   }
   return (
     <Toolbar
