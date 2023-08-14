@@ -325,7 +325,7 @@ export function FormActividades() {
           <Grid item xs={12} sm={6}>
             <FormControl variant='standard' fullWidth sx={{ m: 1 }}>
               <Typography variant='h6' gutterBottom>
-                Servicios
+                Detalles
                 <Tooltip title='Agregar Actor'>
                   <span>
                     <IconButton color='secondary' onClick={agregarNuevoDetalle}>

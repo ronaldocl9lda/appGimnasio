@@ -49,7 +49,7 @@ export function ServiciosForm({
                 name={`servicios[${index}].idServicio`}
                 control={control}
                 render={({ field }) => (
-                  <SelectPlanes field={field} data={data} />
+                  <SelectServicios field={field} data={data} />
                 )}
               />
             </ListItemText>

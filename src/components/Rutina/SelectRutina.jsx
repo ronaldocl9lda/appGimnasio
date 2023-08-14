@@ -24,6 +24,8 @@ export function SelectRutina({ field, data }) {
             data.map((rutinas) => (
               <MenuItem key={rutinas.idRutina} value={rutinas.idRutina}>
                 {rutinas.nombre} 
+                {console.log("Probando")}
+                {console.log(rutinas)}
               </MenuItem>
             ))}
         </Select>

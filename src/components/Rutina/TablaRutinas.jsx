@@ -179,7 +179,7 @@ function TableRutinasToolbar (props) {
             id='tableTitle'
             component='div'
           >
-            Peliculas
+            Rutinas
           </Typography>
           )}
 
